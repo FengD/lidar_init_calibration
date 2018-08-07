@@ -21,32 +21,7 @@ roslaunch calibration init_calibration.launch
 ```
 - `points_cloud_topic` 输入点云和话题名称． Default `pandar_points`
 
-- `output_file_path`　生成ｙａｍｌ的文件路径． Default `/home/ding/Documents/SLAM/src/calibration/param/lidar_init_calibration.yaml`
+- `output_file_path`　生成ｙａｍｌ的文件路径． Default `$(find calibration)/param/default.yaml`
 
 ### 默认输出话题
 地面点云.
-
-## 实时校准
-车辆在行进过程中，车辆本身会有晃动，大幅度的晃动会影响点云的处理，所以为了获取点云较为理想的过滤效果，需要实时对每一帧点云进行处理．处理的方法与初始标定类似，不同的是我们会根据标定结果，对当前点云进行旋转平移和滤波处理．
-
-### 实时校准介绍
-```
-*　为了保证运算速度，我们对点云进行了ｖｏｘｅｌ＿ｇｒｉｄ处理，精度为１０ｃｍ．同时选取的点云大小为半径４０米的圆．（可根据需要修改参数）
-*　当前只输出地面点云和非地面点云，点云已经经过实时矫正，可能据需要修改部分代码来获取，原始点云，姿态或是其他信息．
-```
-
-### 程序运行和参数说明
-```
-roslaunch calibration realtime_calibration.launch
-```
-- `points_cloud_topic` 输入点云和话题名称． Default `pandar_points`
-
-- `input_file_path`　读取ｙａｍｌ的文件路径． Default `/home/ding/Documents/SLAM/src/calibration/param/lidar_init_calibration.yaml`
-
-- `ground_topic` 地面点云话题名称．Default `ground`
-
-- `no_ground_topic`　非地面点云话题名称．Default `no_ground`
-
-### 默认输出话题
-- 地面点云
-- 非地面点云
