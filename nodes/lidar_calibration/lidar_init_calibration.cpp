@@ -46,13 +46,13 @@ static void points_callback(const sensor_msgs::PointCloud2::ConstPtr& input) {
     // set the filed name used to finish the filter
     pass.setFilterFieldName("x");
     //  set the range
-    pass.setFilterLimits(-15.0, 15.0);
+    pass.setFilterLimits(0.0, 50.0);
     // get the result and save them in a point cloud
     pass.filter(points);
     // do the same thing for axe y
     pass.setInputCloud(points.makeShared());
     pass.setFilterFieldName("y");
-    pass.setFilterLimits(-10.0, 2.0);
+    pass.setFilterLimits(-50.0, 50.0);
     pass.filter(cloud_filtered);
     // the coefficient of the plane function
     pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients);
